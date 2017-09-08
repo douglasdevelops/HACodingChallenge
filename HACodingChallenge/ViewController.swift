@@ -13,6 +13,7 @@ import UIKit
         let urlString = "https://api.seatgeek.com/2"
     
         
+        @IBOutlet weak var tableView: UITableView!
 
         
         var titleArray = [String]()
@@ -115,7 +116,7 @@ import UIKit
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
 
             vc.titleString = titleArray[indexPath.row]
-            vc.dateAndTimebString = dateAndTimeArray[indexPath.row]
+            vc.dateAndTimeString = dateAndTimeArray[indexPath.row]
             vc.cityString = cityArray[indexPath.row]
             
             self.navigationController?.pushViewController(vc, animated: true)
