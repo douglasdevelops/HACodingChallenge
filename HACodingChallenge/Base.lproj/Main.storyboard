@@ -32,10 +32,10 @@
                                     <constraint firstAttribute="height" constant="623" id="Sup-MH-9WX"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="YdP-We-pZk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="YdP-We-pZk" customClass="TableViewCell" customModule="HACodingChallenge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YdP-We-pZk" id="iZV-7X-die">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YdP-We-pZk" id="iZV-7X-die" customClass="TableViewCell" customModule="HACodingChallenge" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="111.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -66,6 +66,12 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateTimeLabel" destination="ptO-ti-FXV" id="r2s-7l-bY7"/>
+                                            <outlet property="imgView" destination="FL5-jc-VDP" id="dbl-SL-9TY"/>
+                                            <outlet property="locationLabel" destination="Qks-vE-Nal" id="IyC-Ky-7cE"/>
+                                            <outlet property="titleLabel" destination="Iik-GE-vFS" id="trw-CP-LUV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -84,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daI-R5-EQB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1920.8" y="-239.73013493253376"/>
+            <point key="canvasLocation" x="1926" y="-241"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="gaN-qS-jdF">
@@ -119,6 +125,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="dateTimeLabel" destination="FyD-1e-cA5" id="R5H-M7-kN4"/>
+                        <outlet property="imgView" destination="9Qi-2b-71T" id="W5O-E2-Cj1"/>
+                        <outlet property="locationLabel" destination="kvw-7E-H21" id="SAQ-s0-hxz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zq5-OW-ugs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

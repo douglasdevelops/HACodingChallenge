@@ -10,8 +10,21 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    //image and labels
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    
+    var titleString:String!
+    var dateAndTimeString:String!
+    var cityString:String!
+    
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.updateUI()
 
         // Do any additional setup after loading the view.
     }
@@ -21,15 +34,10 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func updateUI() {
+        self.dateTimeLabel.text = titleString
+        self.locationLabel.text = cityString
+        
     }
-    */
 
 }

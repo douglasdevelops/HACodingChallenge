@@ -12,6 +12,13 @@ class TableViewCell: UITableViewCell {
     
     
 
+
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var dateTimeLabel: UILabel!
+    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

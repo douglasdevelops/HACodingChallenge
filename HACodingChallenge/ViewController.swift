@@ -13,7 +13,7 @@ import UIKit
         let urlString = "https://api.seatgeek.com/2"
     
         
-        @IBOutlet weak var tableView: UITableView!
+
         
         var titleArray = [String]()
         var cityArray = [String]()
@@ -102,19 +102,21 @@ import UIKit
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
             cell.titleLabel.text = titleArray[indexPath.row]
-            cell.cityLabel.text = cityArray[indexPath.row]
+            cell.locationLabel.text = cityArray[indexPath.row]
+            cell.dateTimeLabel.text = dateAndTimeArray[indexPath.row]
             
            
             return cell
         }
         
-        ///for showing next detailed screen with the downloaded info
+        //To send users from the TableView to the Detail View with the necessary info
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
 
-            vc.nameString = nameArray[indexPath.row]
-            vc.dobString = dobArray[indexPath.row]
+            vc.titleString = titleArray[indexPath.row]
+            vc.dateAndTimebString = dateAndTimeArray[indexPath.row]
+            vc.cityString = cityArray[indexPath.row]
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -123,5 +125,5 @@ import UIKit
 
 
 
-}
+
 
