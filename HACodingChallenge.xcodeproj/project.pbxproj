@@ -12,6 +12,8 @@
 		A55C5C221F60B44C000A46B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55C5C201F60B44C000A46B8 /* Main.storyboard */; };
 		A55C5C241F60B44C000A46B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A55C5C231F60B44C000A46B8 /* Assets.xcassets */; };
 		A55C5C271F60B44C000A46B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55C5C251F60B44C000A46B8 /* LaunchScreen.storyboard */; };
+		A5A646D51F60F1B3003CF32D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A646D41F60F1B3003CF32D /* DetailViewController.swift */; };
+		A5A646D71F60F383003CF32D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A646D61F60F383003CF32D /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		A55C5C231F60B44C000A46B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A55C5C261F60B44C000A46B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A55C5C281F60B44C000A46B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5A646D41F60F1B3003CF32D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A5A646D61F60F383003CF32D /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				A55C5C1C1F60B44C000A46B8 /* AppDelegate.swift */,
 				A55C5C1E1F60B44C000A46B8 /* ViewController.swift */,
+				A5A646D41F60F1B3003CF32D /* DetailViewController.swift */,
+				A5A646D61F60F383003CF32D /* TableViewCell.swift */,
 				A55C5C201F60B44C000A46B8 /* Main.storyboard */,
 				A55C5C231F60B44C000A46B8 /* Assets.xcassets */,
 				A55C5C251F60B44C000A46B8 /* LaunchScreen.storyboard */,
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5A646D51F60F1B3003CF32D /* DetailViewController.swift in Sources */,
+				A5A646D71F60F383003CF32D /* TableViewCell.swift in Sources */,
 				A55C5C1F1F60B44C000A46B8 /* ViewController.swift in Sources */,
 				A55C5C1D1F60B44C000A46B8 /* AppDelegate.swift in Sources */,
 			);
@@ -302,6 +310,7 @@
 				A55C5C2D1F60B44C000A46B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
