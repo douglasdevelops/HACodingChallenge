@@ -15,17 +15,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var tableView: UITableView!
     
     var myEvents: [Event] = []
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         downloadJsonWithURL()
-}
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
-    
     
     func downloadJsonWithURL() {
         
