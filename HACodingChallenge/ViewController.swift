@@ -32,21 +32,24 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     //Any time a user types a character into the search field we will call the JSON handler and pass the new value
     func updateSearchResults(for searchController: UISearchController) {
+        myEvents.removeAll()
+        
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
         //    let newSearchText = searchText.replacingOccurrences(of: " ", with: "+") as String
-            downloadJsonWithURL()
+            let newSearchText = searchText .replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+            downloadJsonWithURL(searchText: newSearchText)
         } else {
             print("No updates yet")
         }
         self.tableView.reloadData()
 }
     
-    func downloadJsonWithURL() {
+    func downloadJsonWithURL(searchText: String) {
         
         // Building the URL
         let seatGeekClientID = "ODgwMzA0OHwxNTA0NzM4MTE2LjI1"
-        let searchQuery = searchController.searchBar.text
-        let eventURL = baseURL + "events?client_id=\(seatGeekClientID)&q=\(searchQuery!)"
+        let searchQuery = searchText
+        let eventURL = baseURL + "events?client_id=\(seatGeekClientID)&q=\(searchQuery)"
         
         
         let url = URL(string: eventURL)

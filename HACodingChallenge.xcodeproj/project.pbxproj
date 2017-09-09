@@ -111,7 +111,7 @@
 				TargetAttributes = {
 					A55C5C181F60B44C000A46B8 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = BJT8QVT53Y;
+						DevelopmentTeam = Z6KXG7589J;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -281,7 +281,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BJT8QVT53Y;
+				DEVELOPMENT_TEAM = Z6KXG7589J;
 				INFOPLIST_FILE = HACodingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.chrisconner.HACodingChallenge;
@@ -294,7 +294,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BJT8QVT53Y;
+				DEVELOPMENT_TEAM = Z6KXG7589J;
 				INFOPLIST_FILE = HACodingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.chrisconner.HACodingChallenge;
