@@ -67,10 +67,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="ns1-oB-laV" id="JYh-B0-yyE"/>
-                                    <outlet property="delegate" destination="ns1-oB-laV" id="CaX-kK-Uti"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

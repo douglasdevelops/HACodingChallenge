@@ -22,7 +22,6 @@ class DetailViewController: UIViewController {
     var cityString:String!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()

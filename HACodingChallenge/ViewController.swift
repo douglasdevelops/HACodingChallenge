@@ -8,25 +8,45 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     
     let baseURL = "https://api.seatgeek.com/2/"
+    var newSearchText = "nothing"
+    var myEvents: [Event] = []
+    let searchController = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var tableView: UITableView!
-    
-    var myEvents: [Event] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        downloadJsonWithURL()
+
+        //This is for our UISearchController
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        tableView.tableHeaderView = searchController.searchBar
+        tableView.delegate = self
+        tableView.dataSource = self 
     }
+    
+    //Any time a user types a character into the search field we will call the JSON handler and pass the new value
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+        //    let newSearchText = searchText.replacingOccurrences(of: " ", with: "+") as String
+            downloadJsonWithURL()
+        } else {
+            print("No updates yet")
+        }
+        self.tableView.reloadData()
+}
     
     func downloadJsonWithURL() {
         
         // Building the URL
         let seatGeekClientID = "ODgwMzA0OHwxNTA0NzM4MTE2LjI1"
-        let searchQuery = "Cleveland+Indians"
-        let eventURL = baseURL + "events?client_id=\(seatGeekClientID)&q=\(searchQuery)"
+        let searchQuery = searchController.searchBar.text
+        let eventURL = baseURL + "events?client_id=\(seatGeekClientID)&q=\(searchQuery!)"
         
         
         let url = URL(string: eventURL)
@@ -88,7 +108,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             
         }).resume()
     }
-    
+
    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,8 +134,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         vc.cityString = event.location
         
         navigationController?.pushViewController(vc, animated: true)
+        
+        searchController.dismiss(animated: false, completion: nil)
     }
 }
+
+
+
+
 
 
 

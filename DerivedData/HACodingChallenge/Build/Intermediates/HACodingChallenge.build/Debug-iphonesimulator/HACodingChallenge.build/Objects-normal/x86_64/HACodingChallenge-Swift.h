@@ -188,13 +188,17 @@ SWIFT_CLASS("_TtC17HACodingChallenge13TableViewCell")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class UISearchController;
 @class UITableView;
 
 SWIFT_CLASS("_TtC17HACodingChallenge14ViewController")
-@interface ViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ViewController : UIViewController <UIBarPositioningDelegate, UITableViewDelegate, UIScrollViewDelegate, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDataSource>
 @property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
+@property (nonatomic, copy) NSString * _Nonnull newSearchText;
+@property (nonatomic, readonly, strong) UISearchController * _Nonnull searchController;
 @property (nonatomic, weak) IBOutlet UITableView * _Null_unspecified tableView;
 - (void)viewDidLoad;
+- (void)updateSearchResultsForSearchController:(UISearchController * _Nonnull)searchController;
 - (void)downloadJsonWithURL;
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
