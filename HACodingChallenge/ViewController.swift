@@ -8,121 +8,121 @@
 
 import UIKit
 
-    class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-        
-        let urlString = "https://api.seatgeek.com/2"
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-        
-        @IBOutlet weak var tableView: UITableView!
+    let baseURL = "https://api.seatgeek.com/2/"
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var myEvents: [Event] = []
 
-        
-        var titleArray = [String]()
-        var cityArray = [String]()
-        var dateAndTimeArray = [String]()
-        var imageSmallArray = [String]()
-        var imageMediumArray = [String]()
-        
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            
-            self.downloadJsonWithURL()
-            
-            // Do any additional setup after loading the view, typically from a nib.
-        }
-        
-        override func didReceiveMemoryWarning() {
-            super.didReceiveMemoryWarning()
-            // Dispose of any resources that can be recreated.
-        }
-        
-        
-        func downloadJsonWithURL() {
-            let url = NSURL(string: urlString)
-            
-            var request = URLRequest(url: url as! URL)
-            request.setValue("ODgwMzA0OHwxNTA0NzM4MTE2LjI1", forHTTPHeaderField: "d7a462407261e9c7dc6433aefccb69402368a1b27743d996a7d936df3b7affce")
-            
-            URLSession.shared.dataTask(with: (url as? URL)!, completionHandler: {(data, response, error) -> Void in
-                
-                if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary {
-                    print(jsonObj!.value(forKey: "events"))
-                    
-                    if let eventsArray = jsonObj!.value(forKey: "events") as? NSArray {
-                        for event in eventsArray{
-                            if let eventDict = event as? NSDictionary {
-                                if let title = eventDict.value(forKey: "title") {
-                                    self.titleArray.append(title as! String)
-                                }
-                                if let city = eventDict.value(forKey: "city") {
-                                    self.cityArray.append(city as! String)
-                                }
-                                if let dateAndtime = eventDict.value(forKey: "datetime_local") {
-                                    self.dateAndTimeArray.append(dateAndtime as! String)
-                                }
-                                if let imageSmall = eventDict.value(forKey: "small") {
-                                    self.imageSmallArray.append(imageSmall as! String)
-                                }
-                                if let imageMedium = eventDict.value(forKey: "medium") {
-                                    self.imageMediumArray.append(imageMedium as! String)
-                                }
-                                
-                            }
-                        }
-                    }
-                    
-                    OperationQueue.main.addOperation({
-                        self.tableView.reloadData()
-                    })
-                }
-            }).resume()
-        }
-        
-        
-        func downloadJsonWithTask() {
-            
-            let url = NSURL(string: urlString)
-            
-            var downloadTask = URLRequest(url: (url as? URL)!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
-            
-            downloadTask.httpMethod = "GET"
-            
-            URLSession.shared.dataTask(with: downloadTask, completionHandler: {(data, response, error) -> Void in
-                
-                let jsonData = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                
-                print(jsonData)
-                
-            }).resume()
-        }
-        
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return titleArray.count
-        }
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
-            cell.titleLabel.text = titleArray[indexPath.row]
-            cell.locationLabel.text = cityArray[indexPath.row]
-            cell.dateTimeLabel.text = dateAndTimeArray[indexPath.row]
-            
-           
-            return cell
-        }
-        
-        //To send users from the TableView to the Detail View with the necessary info
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-
-            vc.titleString = titleArray[indexPath.row]
-            vc.dateAndTimeString = dateAndTimeArray[indexPath.row]
-            vc.cityString = cityArray[indexPath.row]
-            
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        downloadJsonWithURL()
+}
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
+    
+    func downloadJsonWithURL() {
+        
+        // Building the URL
+        let seatGeekClientID = "ODgwMzA0OHwxNTA0NzM4MTE2LjI1"
+        let searchQuery = "Cleveland+Indians"
+        let eventURL = baseURL + "events?client_id=\(seatGeekClientID)&q=\(searchQuery)"
+        
+        
+        let url = URL(string: eventURL)
+        
+        var request = URLRequest(url: url as! URL)
+        
+        URLSession.shared.dataTask(with: (url as? URL)!, completionHandler: {(data, response, error) -> Void in
+            
+            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary {
+                print(jsonObj!.value(forKey: "events"))
+                
+                // Pull out items we need
+                // Create temp dictionary
+                // Input into dictionary
+                // Create event with dictionary
+                
+                if let eventsArray = jsonObj!.value(forKey: "events") as? [[String:Any]] {
+                    
+                    for event in eventsArray {
+                        
+                        // Grabbing all the information I need. Digging through JSON
+                        
+                        //Top Level
+                        let title    = event["title"] as! String
+                        let dateTime = event["datetime_utc"] as! String
+                        let id       = event["id"] as! Int
+                        
+                        
+                        // We had to dig to some sub-nodes
+                        let venueDict = event["venue"] as! [String:Any]
+                        let location = venueDict["display_location"] as! String
+                        
+                        let performersArray = event["performers"] as! [[String:Any]]
+                        let searchedItemDict = performersArray.first as! [String:Any]
+                        
+                        let locationImage = searchedItemDict["image"] as? String
+                        
+                        
+                        // Throw these items into my dictionary
+                        
+                        var tempDict: [String:Any?] = [
+                            "id": id,
+                            "title": title,
+                            "datetime_utc": dateTime,
+                            "display_location": location,
+                            "image": locationImage
+                        ]
+                        
+                        let newEvent = Event(data: tempDict)
+                        
+                        self.myEvents.append(newEvent)
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+        }).resume()
+    }
+    
+   
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myEvents.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
+        let event = myEvents[indexPath.row]
+        cell.setEvent(event: event)
+        return cell
+    }
+    
+    //To send users from the TableView to the Detail View with the necessary info
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        
+        let event = myEvents[indexPath.row]
+        
+        vc.titleString = event.title
+        vc.dateAndTimeString = event.dateTime
+        vc.cityString = event.location
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 
 
 
